@@ -20,8 +20,10 @@ class courseAssignment:
         # if student did not specify course in preference penalty is 100000
         if course in preferences[student]: 
             result = preferences[student].index(course)
-        else: 
+        elif course == 'Overflow': 
             result = 100000
+        else: 
+            result = 1000
         return result 
 
     def get_best_assignment(self) -> None:
@@ -84,6 +86,6 @@ course_capacety= {
     'Course 3': 2, 
     'Course 4': 5, 
     'Course 5': 5, 
-    'Overfow' : float('inf')
+    'Overflow' : float('inf')
 }
 courseAssignment(preferences, course_capacety)
