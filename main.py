@@ -42,6 +42,7 @@ class courseAssignment:
         # add constraint to guarantee that every student is assigend to exactly one course
         m.addConstrs(quicksum(assigments_gurobi[student,course] for course in course_capacety.keys()) == 1 for student in preferences.keys() )
         m.optimize()
+        
         # get every positive assignment
         optimized_assignments = [a for a in possible_assignments if assigments_gurobi[a].x > 0.99]
         for entry in optimized_assignments: 
@@ -78,10 +79,11 @@ preferences = {
                 "Student 20" : [ "Course 2","Course 1","Course 4","Course 5"]
             }
 course_capacety= {
-    'Course 1': 5, 
-    'Course 2': 5, 
-    'Course 3': 5, 
+    'Course 1': 2, 
+    'Course 2': 2, 
+    'Course 3': 2, 
     'Course 4': 5, 
-    'Course 5': 5
+    'Course 5': 5, 
+    'Overfow' : float('inf')
 }
 courseAssignment(preferences, course_capacety)
